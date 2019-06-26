@@ -1,0 +1,25 @@
+{
+  "name": "learn-koa2",
+  "version": "1.0.0",
+  "description": "学习koa2",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/github-30723535/learn-koa2.git"
+  },
+  "keywords": [
+    "koa2"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "koa": "^2.7.0",
+    "koa-views": "^6.2.0",
+    "pug": "^2.0.4"
+  }
+}
