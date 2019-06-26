@@ -1,0 +1,36 @@
+{
+  "name": "koa2-demo",
+  "version": "1.0.0",
+  "description": "学习koa2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src --exec \"babel-node src/index.js --presets=@babel/preset-env\"",
+    "build": "rimraf dist && babel src -s -d dist --presets=@babel/preset-env",
+    "production": "node dist",
+    "server": "node server/index.js"
+  },
+  "keywords": [
+    "koa2",
+    "node"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "co": "^4.6.0",
+    "koa": "^2.7.0",
+    "koa-logger": "^3.2.0",
+    "koa-session": "^5.12.0",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1",
+    "rimraf": "^2.6.3"
+  }
+}

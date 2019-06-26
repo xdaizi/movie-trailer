@@ -1,0 +1,12 @@
+{
+    "presets": [
+        ["@babel/preset-env", {
+            "targets": {
+                "node": "current" // 当前node 环境
+            },
+            "useBuiltIns": false // 是否引入polyfill
+        }]
+    ],
+    // 运行时依赖
+    "plugins": ["@babel/plugin-transform-runtime"]
+}
