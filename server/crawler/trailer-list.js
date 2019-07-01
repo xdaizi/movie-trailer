@@ -57,5 +57,9 @@ const sleep = time => new Promise(resolve => {
         return links
     })
     browser.close()
-    console.log(result)
+    // console.log(result)
+    // 子进程发送事件
+    process.send({result})
+    // 进程退出
+    process.exit(0)
 })()
