@@ -6,6 +6,7 @@ const { resolve } = require('path')
     // 拿到执行脚本
     const script = resolve(__dirname, '../crawler/trailer-list.js');
     const child = cp.fork(script, []);
+    // 定义变量标志是否已调用
     let invoked = false;
     // 监听error事件
     child.on('error', err => {
@@ -16,7 +17,7 @@ const { resolve } = require('path')
     // 监听进程退出事件
     child.on('exit', code => {
         if(invoked) return
-        invoked = false
+        invoked = true
         let err = code === 0 ? null: new Error('exit code' + code)
         console.log(err)
     })
