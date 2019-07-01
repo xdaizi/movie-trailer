@@ -1,1 +1,0 @@
-{"version":3,"sources":["js/index.js"],"names":["dom","document","getElementsByClassName","onclick","console","log"],"mappings":";AAAA,IAAMA,EAAMC,SAASC,uBAAuB,OAAO,GACnDF,EAAIG,QAAU,WACVC,QAAQC,IAAI","file":"js.bdde3521.js","sourceRoot":"..","sourcesContent":["const dom = document.getElementsByClassName('app')[0]\r\ndom.onclick = function() {\r\n    console.log('点击事件')\r\n}"]}
