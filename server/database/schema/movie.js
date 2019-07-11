@@ -48,7 +48,7 @@ const movieSchema = new Schema({
 // 使用前置钩子来作为中间件实现更新数据的时候自动更新创建的时间及更新的时间
 // 1.给 document 定义一个前置钩子 (pre hook)
 // 2.给 document 定义一个后置钩子 (post hook)
-movieSchema.pre('save', (next) => {
+movieSchema.pre('save', function(next){
     // 首次保存则创建时间，更新时间都要赋值
     // Document.prototype.isNew
     // Boolean flag specifying if the document is new.

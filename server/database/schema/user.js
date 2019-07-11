@@ -54,7 +54,7 @@ userSchema.virtual('isLocked').get(() => {
 
 
 // 使用前置钩子来作为中间件实现更新数据的时候自动更新创建的时间及更新的时间
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function(next) {
     // 首次保存则创建时间，更新时间都要赋值
     if (this.isNew) {
         this.mate.createdAt = this.mate.updatedAt = Date.now()
@@ -65,7 +65,7 @@ userSchema.pre('save', (next) => {
 })
 
 // 对密码进行加盐
-userSchema.pre('save', (next) => {
+userSchema.pre('save', function(next) {
     // 密码没有被修改过,则直接return
     if (!this.isModified('password')) return next()
 
