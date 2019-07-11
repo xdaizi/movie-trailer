@@ -5,7 +5,11 @@ const Schema = mongoose.Schema
 const Mixed = Schema.Types.Mixed // 适用于数据类型或者数据结构变化比较平凡的场景
 // 创建实例
 const movieSchema = new Schema({
-    doubanId: String, // 豆瓣id
+    doubanId: {
+        unique: true, // 代表id是唯一的，不会有重复
+        required: true, // require:表示必填
+        type: String
+    }, // 豆瓣id
     rate: Number, // 评分
     title: String, // 标题
     summary: String, // 简介
