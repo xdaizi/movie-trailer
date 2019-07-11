@@ -1,14 +1,24 @@
 // 初始化脚本
 const mongoose = require('mongoose')
+const { resolve } = require('path')
 // 定义要连接的数据库
 // const DB = 'mongodb://localhost/douban-trailer'
+// 匹配资源
 const DB = 'mongodb://localhost/douban-test'
 
+const glob = require('glob')
 // 定义最多连接次数
 const MAX_CONNECT_TIME = 5
 
 // 指定promise
 mongoose.Promise = global.Promise
+
+// 初始化Schema的方法(初始化数据模型)
+
+exports.initSchemas = () => {
+    // 匹配schema所有的js ==> 所有建立数据模型的脚本
+    glob.sync(resolve(__dirname, './schema', '**/*.js')).forEach(require)
+}
 
 // 暴露一个连接数据库的方法
 exports.connect = () => {
