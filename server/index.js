@@ -11,7 +11,10 @@ const { connect, initSchemas } = require('./database/init.js')
   await connect()
   initSchemas()
   // 引入任务脚本
-  require('./task/movie.js')
+  // 爬取电影
+  // require('./task/movie.js')
+  // 爬取电影详情信息
+  require('./task/api.js')
   // const Movie = mongoose.model('Movie')
   // const movies = await Movie.find({})
   // console.log('movie----', movies)

@@ -1,4 +1,4 @@
-// 电影模型
+// 电影分类
 const mongoose = require('mongoose')
 // 拿到建模工具
 const Schema = mongoose.Schema

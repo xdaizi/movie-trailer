@@ -17,10 +17,10 @@ const movieSchema = new Schema({
     poster: String, // 海报图
     cover: String, // 封面图
 
-    category: { // 目录
+    category: [{ // 电影分类
         type: ObjectId, // id
         ref: 'Category' // ref: 应用指向Category的模型
-    },
+    }],
 
     videoKey: String, // 图床文件视频id
     posterKey: String, // 图床文件海报id
@@ -31,7 +31,7 @@ const movieSchema = new Schema({
     pubdate: Mixed, // 上映日期
     year: Number, // 年份
 
-    tags: [String], // 标签
+    tags: Mixed, // 标签
     
     meta: { // 描述
         createdAt: { // 数据创建的时间
