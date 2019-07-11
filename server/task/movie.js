@@ -2,6 +2,10 @@
 // 拿到子进程
 const cp = require('child_process')
 const { resolve } = require('path')
+// 引入mongoose 让电影列表数的户数入库
+const mongoose = require('mongoose')
+// 拿到电影模型
+const Movie = mongoose.model('Movie')
 ;(async () => {
     // 拿到执行脚本
     const script = resolve(__dirname, '../crawler/trailer-list.js');
@@ -24,6 +28,19 @@ const { resolve } = require('path')
     // 监听message事件
     child.on('message', data => {
         let result = data.result
-        console.log(result)
+        // console.log(result)
+        result.forEach( async v =>{
+            // 查询为异步
+            let movie = await Movie.findOne({
+                doubanId: v.doubanId
+            })
+
+            // 没有存过则存进去
+            if(!movie) {
+                movie = new Movie(v)
+                await movie.save()
+            }
+        })
+
     })
 })()

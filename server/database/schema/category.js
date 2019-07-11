@@ -33,9 +33,9 @@ categorySchema.pre('save', function(next) {
     // Document.prototype.isNew
     // Boolean flag specifying if the document is new.
     if (this.isNew) {
-        this.mate.createdAt = this.mate.updatedAt = Date.now()
+        this.meta.createdAt = this.meta.updatedAt = Date.now()
     } else { // 否则只给更新时间赋值
-        this.mate.updatedAt = Date.now()
+        this.meta.updatedAt = Date.now()
     }
     next()
 })
