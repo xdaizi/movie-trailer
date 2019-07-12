@@ -10,7 +10,7 @@ const router = new Router()
 // 定义请求路由
 
 // 获取全部电影
-router.get('/movies/all', async (ctx, next) => {
+router.get('/movies', async (ctx, next) => {
     // 获取电影模型
     const Movie = mongoose.model('Movie')
     // 查询全部电影数据并按创建的顺序倒序排列
@@ -25,7 +25,7 @@ router.get('/movies/all', async (ctx, next) => {
 })
 
 // 获取某个电影的详情
-router.get('/movies/detail/:id', async (ctx, next) => {
+router.get('/movies/:id', async (ctx, next) => {
     // 获取电影模型
     const Movie = mongoose.model('Movie')
     // 拿到参数id
