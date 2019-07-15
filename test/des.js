@@ -12,12 +12,13 @@ class Boy {
 //     console.log(descriptor)
 // }
 function speak(language) {
+    // console.log(111111)
     return function(target, key, descriptor) {
         console.log(target)
         console.log(key)
         console.log(descriptor)
         target.language = language
-        // return descriptor
+        return descriptor
     }
 }
 const Luke = new Boy()
