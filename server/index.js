@@ -1,41 +1,45 @@
 const Koa = require('koa')
-const app = new Koa()
-const views = require('koa-views')
-const mongoose = require('mongoose')
-const { resolve } = require('path')
 const { connect, initSchemas } = require('./database/init.js')
-// 引入router
-const router = require('./routes/index.js')
+const { resolve, join } = require('path');
+// 函数式编程库
+const R = require('ramda')
 
+// 定义中间件的集合
+const MIDDLEWARES = ['router']
+
+// 定义中间件的使用方法
+// R.compose: 将方法合并,从右往左执行
+const useMiddlewares = app => {
+  R.map(
+    R.compose(
+      R.forEachObjIndexed(initWith => initWith(app)), // 执行方法
+      require, // 引入
+      name => join(__dirname, `./middlewares/${name}`) // 到中间件目录拿到中间件路径集合
+    )
+  )(MIDDLEWARES)
+}
 
 // 连接数据库，且等数据库连接成功之后再启动其他服务
 ;(async () => {
-  await connect()
-  initSchemas()
-  // 引入任务脚本
-  // 爬取电影
-  // require('./task/movie.js')
-  // 爬取电影详情信息
-  // require('./task/api.js')
-  // const Movie = mongoose.model('Movie')
-  // const movies = await Movie.find({})
-  // console.log('movie----', movies)
+  try {
+    await connect()
+    initSchemas()
+    // 引入任务脚本
+    // 爬取电影
+    // require('./task/movie.js')
+    // 爬取电影详情信息
+    // require('./task/api.js')
+    // const Movie = mongoose.model('Movie')
+    // const movies = await Movie.find({})
+    // console.log('movie----', movies) 
+    const app = new Koa();
+    await useMiddlewares(app)
+    // app.use(async (ctx, next) => {
+    //   ctx.body = 'hi koa'
+    //   next()
+    // })
+    app.listen(3333)
+  } catch (error) {
+    console.log(error)
+  }
 })()
-
-// 路由基本用法 
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
-
-app.use(views(resolve(__dirname, './views'), {
-  extension: 'pug'
-}))
-
-app.use(async (ctx, next) => {
-  await ctx.render('index', {
-    you: 'Scott',
-    me: 'WangPeng'
-  })  
-})
-
-app.listen(3333)

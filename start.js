@@ -3,4 +3,5 @@
 require('babel-core/register')()
 // 引入polyfill
 require('babel-polyfill')
-require('./test/des.js')
+// require('./test/des.js')
+require('./server/index.js')
