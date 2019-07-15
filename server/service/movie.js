@@ -1,4 +1,6 @@
-// 服务层 --- 查询数据(与数据库交互)
+// 服务层 --- 查询数据(与数据库交互) 
+
+// 电影接口
 
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
