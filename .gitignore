@@ -1,2 +1,3 @@
 # 配置忽略的文件
 node_modules/
+dist/
