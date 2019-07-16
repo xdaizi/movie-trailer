@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["$","html","click","console","log"],"mappings":";;;AAEA,aAFA,QAAA,wBACAA,EAAE,QAAQC,KAAK,cACfD,EAAE,QAAQE,MAAM,WACZC,QAAQC,IAAI","file":"src.d286a8d0.js","sourceRoot":"..\\src","sourcesContent":["import './assets/common.sass'\r\n$('#app').html('web-percel')\r\n$('#app').click(function(){\r\n    console.log('点击事件')\r\n})"]}
