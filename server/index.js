@@ -5,7 +5,7 @@ const { resolve, join } = require('path');
 const R = require('ramda')
 
 // 定义中间件的集合
-const MIDDLEWARES = ['router']
+const MIDDLEWARES = ['router', 'parcel']
 
 // 定义中间件的使用方法
 // R.compose: 将方法合并,从右往左执行
@@ -38,7 +38,7 @@ const useMiddlewares = app => {
     //   ctx.body = 'hi koa'
     //   next()
     // })
-    app.listen(3333)
+    app.listen(4455)
   } catch (error) {
     console.log(error)
   }
