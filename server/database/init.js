@@ -55,14 +55,14 @@ exports.connect = () => {
         mongoose.connection.once('open', () => {
             // 测试存入数据
             // 1.创建模型 --- Dog 集合
-            const Dog = mongoose.model('Dog', {name: String})
-            // 2.创建实例 -- 数据
-            const dog = new Dog({name: '旺财'})
-            // 存储到数据库 --- 返回一个promise
-            dog.save().then((res) => {
-                console.log('存储成功', res)
-            })
-            resolve()
+            // const Dog = mongoose.model('Dog', {name: String})
+            // // 2.创建实例 -- 数据
+            // const dog = new Dog({name: '旺财'})
+            // // 存储到数据库 --- 返回一个promise
+            // dog.save().then((res) => {
+            //     console.log('存储成功', res)
+            // })
+            // resolve()
             console.log('MongoDB Connected successfully')
         })
     })
