@@ -19,6 +19,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "antd": "^3.0.0",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.6",
     "ejs": "^2.6.2",
@@ -32,8 +33,9 @@
     "pug": "^2.0.4",
     "puppeteer": "^1.18.1",
     "ramda": "^0.26.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-router-dom": "^4.2.2",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
   },
