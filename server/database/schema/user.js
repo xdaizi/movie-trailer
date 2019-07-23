@@ -66,8 +66,9 @@ userSchema.pre('save', function(next) {
 
 // 对密码进行加盐
 userSchema.pre('save', function(next) {
+    let user = this
     // 密码没有被修改过,则直接return
-    if (!this.isModified('password')) return next()
+    if (!user.isModified('password')) return next()
 
     // 加密,加盐:第一个参数:权重值(权重越大,消耗性能越大)
     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
@@ -75,27 +76,30 @@ userSchema.pre('save', function(next) {
         if (err) return next(err)
 
         // 拿到盐值,加密
-        bcrypt.hash(this.password, salt, (err, hash) => {
+        bcrypt.hash(user.password, salt, (err, hash) => {
             // 有错误直接返回
             if (err) return next(err)
             // 将hash值赋值给密码
-            this.password = hash
+            // console.log('hash', hash)
+            user.password = hash
+
+            console.log('user', user)
             next()
         })
     })
-    next()
+    // 去掉 --- 不然保存不了加盐的密码
+    // next()
 })
-
 // 给userSchema加上实例方法,如比对密码等
 userSchema.methods = {
     // 比对密码
     comparePassword: (_password, password) => {
         return new Promise((resolve, reject) => {
-            bcrypt.compare(_password, password), (err, isMatch) => {
+            bcrypt.compare(_password, password, function (err, isMatch) {
                 // isMatch: 表示密码是否比对成功 
-                if(!err) resolve(isMatch)
+                if (!err) resolve(isMatch)
                 else reject(err)
-            }
+            })
         })
     },
     // 记录登录尝试

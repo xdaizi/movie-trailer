@@ -5,7 +5,7 @@ import { message } from 'antd'
 
 // 定义axios的配置
 const defaultAxiosConf = {
-    timeout: 5000 // 延时
+    timeout: 10000 // 延时
 }
 
 // 定义请求函数
@@ -27,7 +27,7 @@ const _request = (param = {}, fn = () => {}) => {
         throw err
     }).catch(err => { // 捕捉错误
         fn(false)
-        message.err(String(err || '网络错误'))
+        message.error(String(err || '网络错误'))
     })
 }
 

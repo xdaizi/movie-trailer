@@ -67,3 +67,20 @@ exports.connect = () => {
         })
     })
 }
+
+// 初始化一个管理员
+exports.initAdmin = async () => {
+    const User = mongoose.model('User')
+    let user = await User.findOne({
+        username: 'rex'
+    })
+    if (!user) {
+        const user = new User({
+            username: 'rex',
+            email: 'rex@163.com',
+            password: '123456'
+        })
+        await user.save()
+    }
+}
+  

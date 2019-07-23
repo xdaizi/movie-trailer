@@ -1,11 +1,11 @@
 const Koa = require('koa')
-const { connect, initSchemas } = require('./database/init.js')
+const { connect, initSchemas, initAdmin } = require('./database/init.js')
 const { resolve, join } = require('path');
 // 函数式编程库
 const R = require('ramda')
 
 // 定义中间件的集合
-const MIDDLEWARES = ['router', 'parcel']
+const MIDDLEWARES = ['common', 'router', 'parcel']
 
 // 定义中间件的使用方法
 // R.compose: 将方法合并,从右往左执行
@@ -24,6 +24,7 @@ const useMiddlewares = app => {
   try {
     await connect()
     initSchemas()
+    await initAdmin()
     // 引入任务脚本
     
     // 爬取电影
