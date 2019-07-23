@@ -25,6 +25,7 @@ const useMiddlewares = app => {
     await connect()
     initSchemas()
     // 引入任务脚本
+    
     // 爬取电影
     // require('./task/movie.js')
     // 爬取电影详情信息
