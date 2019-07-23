@@ -16,7 +16,8 @@ export default class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        year: ['2026','2025', '2024', '2023', '2022', '2021', '2020', '2019'], // 电影上映年份
+        selectedKey: '0',
+        years: ['2026','2025', '2024', '2023', '2022', '2021', '2020', '2019'], // 电影上映年份
         type: this.props.match.params.type, // 电影类型
         year: this.props.match.params.year, // 电影年份
         movies: [] // 所搜出来的电影
@@ -37,7 +38,7 @@ export default class Home extends Component {
   }
 
   // 点击时,切换选择
-  _selectItem = ({key}) => {
+  _selectedItem = ({key}) => {
     this.setState({
       selectedKey: key
     })
@@ -45,10 +46,11 @@ export default class Home extends Component {
 
   // 获取电影接口
   _getAllMovies () {
-    request(window.__LOADING__,)({
+    request(window.__LOADING__)({
       method: 'get',
-      url: `/movies?type=${this.state.type || ''}&year=${this.state.year || ''}`
+      url: `api/v0/movies?type=${this.state.type || ''}&year=${this.state.year || ''}`
     }).then(res => {
+      console.log(2222, res)
       this.setState({
         movies: res
       })
@@ -60,28 +62,33 @@ export default class Home extends Component {
   }
   render () {
     // 拿到选择的年份及类型
-    const { year, selectedKey } = this.state
+    const { years, selectedKey } = this.state
     return (
       <Layout {...this.props}>
-        <div className="flex-rot full">
-          {/* 左侧菜单 */}
+        <div className='flex-row full'>
           <Menu
             defaultSelectedKeys={[selectedKey]}
-            mode="inline"
-            style={{ height: '100%', overflow: 'scroll', maxWidth: 230 }}
-            onSelect={this._selectItem}
-            className="align-self-start"
+            mode='inline'
+            inlineCollapsed={true}
+            style={{ height: '100%', overflowY: 'scroll', maxWidth: 230, minWidth: 100 }}
+            onSelect={this._selectedItem}
+            className='align-self-start'
           >
             {
-              years.map((e, i) => (
-                <Menu.Item key={i}>
-                  <a href={`/year/${e}`}>{e} 年上映</a>
-                </Menu.Item>
-              ))
+              years && years.length
+                ? years.map((e, i) => (
+                  <Menu.Item key={i}
+                  style={{
+                    maxWidth: 54
+                  }}
+                  >
+                    <a href={`/year/${e}`}>{e} 年上映</a>
+                  </Menu.Item>
+                ))
+                : null
             }
           </Menu>
-          {/* 电影展示区 */}
-          <div className="flex-1 scroll-y align-selt-start">
+          <div className='flex-1 scroll-y align-self-start'>
             {this._renderContent()}
           </div>
         </div>

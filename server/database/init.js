@@ -62,7 +62,7 @@ exports.connect = () => {
             // dog.save().then((res) => {
             //     console.log('存储成功', res)
             // })
-            // resolve()
+            resolve()
             console.log('MongoDB Connected successfully')
         })
     })

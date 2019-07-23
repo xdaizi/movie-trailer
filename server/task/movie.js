@@ -38,6 +38,10 @@ const Movie = mongoose.model('Movie')
             // 没有存过则存进去
             if(!movie) {
                 movie = new Movie(v)
+                movie.video = 'http://vt1.doubanio.com/201907231607/b5eeddd6b7b74d327ec3347551b27380/view/movie/M/402470424.mp4'
+                await movie.save()
+            } else {
+                movie.video = 'http://vt1.doubanio.com/201907231607/b5eeddd6b7b74d327ec3347551b27380/view/movie/M/402470424.mp4'
                 await movie.save()
             }
         })

@@ -6,7 +6,7 @@ import navRoutes from '../nav.js'
 
 // 获得菜单内容
 const getMenuContent = ({path, name}) =>{
-    <a href={{path: path || '/'}} style={{color: '#fff2e8'}}>
+    return <a href={path ? path : '/'} style={{color: '#fff2e8'}}>
         {name}
     </a>
 }
@@ -14,7 +14,7 @@ const getMenuContent = ({path, name}) =>{
 // 导出默认模板
 export default class LayoutDefault extends Component {
 
-    constructor() {
+    constructor(props) {
         // props
         super(props)
         this.state = {
@@ -44,7 +44,7 @@ export default class LayoutDefault extends Component {
 
     // 匹配的路由
     matchRouteName = this.props.match
-        ? navRoutes.find(E => e.name === this.props.match.params.type)
+        ? navRoutes.find(e => e.name === this.props.match.params.type)
             ? navRoutes.find(e => e.name === this.props.match.params.type).name
             : '全部'
         : navRoutes[0].name
@@ -56,47 +56,45 @@ export default class LayoutDefault extends Component {
         const { loading, tip } = this.state
 
         return (
-            <div className="flex-colum" style={{ width: '100%', height: '100%' }}>
-                <Menu 
-                 mode="horizontal"
-                 style={{ fontSize: 13.5, backgroundColor: '#000' }}
-                 defaultSelectedKeys={[ this.matchRouteName ]}
-                >
-                    {/* 菜单 */}
-                    <Menu.Item styke={{
-                        marginLeft: 24,
-                        marginRight: 30,
-                        fontSize: 18,
-                        textAlign: 'center',
-                        color: '#fff !important',
-                        float: 'left'
-                    }}>
-                        {/* logo 首页的按钮 */}
-                        <a href={'/'} className="hover-scale logo-text" style={{ color: '#ff2e8' }}>
-                            黑骑预告片
-                        </a>
-                    </Menu.Item>
-                    {/* 电影分类菜单 */}
-                    <Menu.Item>
-                        {/* 根据导航生成对应的内容 */}
-                        {
-                            navRoutes.map((e, i) => (
-                                <Menu.Item key={e.name}>
-                                    { getMenuContent({...e}) }
-                                </Menu.Item>
-                            ))
-                        }
-                    </Menu.Item>
-                    {/* loading区 */}
-                    <Spin
-                        spinning={ loading }
-                        tip={ tip }
-                        wrapperClassName="content-spin full"
-                    >
-                        {children}
-                    </Spin>
-                </Menu>
-            </div>
+            <div className='flex-column' style={{ width: '100%', height: '100%' }}>
+            <Menu
+              style={{ fontSize: 13.5, backgroundColor: '#000' }}
+              mode='horizontal'
+              defaultSelectedKeys={[this.matchRouteName]}
+            >
+              <Menu.Item
+                style={{
+                  marginLeft: 10,
+                  marginRight: 10,
+                  fontSize: 12,
+                  textAlign: 'center',
+                  color: '#fff !important',
+                  float: 'left'
+                }}
+              >
+                <a href={'/'} className='hover-scale logo-text' style={{color: '#fff2e8'}}>黑骑预告片网站</a>
+              </Menu.Item>
+              {
+                navRoutes.map((e, i) => (
+                  <Menu.Item key={e.name}
+                  style={{
+                    paddingLeft: 6,
+                    paddingRight: 6,
+                  }}
+                  >
+                    { getMenuContent({ ...e }) }
+                  </Menu.Item>
+                ))
+              }
+            </Menu>
+            <Spin
+              spinning={loading}
+              wrapperClassName='content-spin full'
+              tip={tip}
+            >
+              {children}
+            </Spin>
+          </div>
         )
     }
 

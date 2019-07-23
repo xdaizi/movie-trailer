@@ -14,13 +14,13 @@ const _request = (param = {}, fn = () => {}) => {
         ...defaultAxiosConf,
         ...param
     }).then(res => { // 统一处理请求异常情况
-        const { sucess, data, err, code } = res.data
+        const { success, data, err, code } = res.data
         // code: 401 没有权限访问,返回首页
         if (code === 401) {
             window.location.href = '/'
             return
         }
-        if(sucess) {
+        if(success) {
             fn(false) // 关闭loading
             return data
         }
@@ -34,6 +34,7 @@ const _request = (param = {}, fn = () => {}) => {
 // 导出
 export default param => {
     const type = typeof param
+    console.log(111111, type)
     if (type === 'function') {
         param(true)
         return obj => _request(obj, param)

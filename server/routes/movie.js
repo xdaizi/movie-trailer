@@ -11,7 +11,8 @@ export class MovieController {
         const {type, year} = ctx.query
         const movies = await gettAllMovies(type,year)
         ctx.body = {
-            movies
+            success: true,
+            data: movies
         }
         // next()
     }

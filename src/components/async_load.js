@@ -27,7 +27,7 @@ export default (loadComponent, placeholder = '正在加载中') => {
         }
         render() {
             const { Child } = this.state
-            console.log(111,Child)
+            // console.log(111,Child)
             return (
                 // 没有加载完成时则显示占位符
                 Child ? <Child {...this.props}/> : placeholder

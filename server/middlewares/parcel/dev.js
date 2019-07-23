@@ -32,7 +32,6 @@ const bundler = new Bundler(r('../../../src/index.html'), {
 export const dev = async app => {
     // 构建
     await bundler.bundle()
-
     // 起静态资源服务
     app.use(serve(r('../../../dist')))
 
