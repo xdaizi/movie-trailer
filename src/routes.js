@@ -20,4 +20,10 @@ export default [
     path: '/admin',
     component: AC(() => import('./views/admin/login'))
   },
+  {
+    name: '定影管理',
+    icon: 'admin',
+    path: '/list',
+    component: AC(() => import('./views/admin/list'))
+  },
 ]

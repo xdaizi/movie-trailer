@@ -32,7 +32,9 @@ export default class Login extends Component {
             ...values
           }
         }).then((res) => {
-            this.props.history.replace('/admin/list')
+          if (res.success) {
+            this.props.history.replace('/list')
+          }
         })
       }
     })

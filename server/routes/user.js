@@ -22,7 +22,10 @@ export class UserController {
     
         if (matchData.match) {
           return (ctx.body = {
-            success: true
+            success: true,
+            data: {
+              success: true
+            }
           })
         }
         

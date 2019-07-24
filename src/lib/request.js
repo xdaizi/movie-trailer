@@ -34,7 +34,6 @@ const _request = (param = {}, fn = () => {}) => {
 // 导出
 export default param => {
     const type = typeof param
-    console.log(111111, type)
     if (type === 'function') {
         param(true)
         return obj => _request(obj, param)
